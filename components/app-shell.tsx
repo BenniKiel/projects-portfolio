@@ -56,40 +56,49 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-900 w-full flex-1 mx-auto border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-screen"
-      )}
-    >
-      <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            {open ? <Logo /> : <LogoIcon />}
-            <div className="mt-8 flex flex-col gap-2">
-              {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
-              ))}
-            </div>
+  <div
+    className={cn(
+      // h-screen zwingt den Container auf exakt 100% der Bildschirmhöhe
+      "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-900 w-full h-screen border-neutral-200 dark:border-neutral-700 overflow-hidden"
+    )}
+  >
+    <Sidebar open={open} setOpen={setOpen}>
+      <SidebarBody className="justify-between gap-10">
+        <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+          {open ? <Logo /> : <LogoIcon />}
+          <div className="mt-8 flex flex-col gap-2">
+            {links.map((link, idx) => (
+              <SidebarLink key={idx} link={link} />
+            ))}
           </div>
-          <div>
-            <SidebarLink
-              link={{
-                label: "Benjamin Kiel",
-                href: "https://benjamin-kiel.de",
-                icon: (
-                  <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0 rounded-full" />
-                ),
-              }}
-            />
-          </div>
-        </SidebarBody>
-      </Sidebar>
-      <main className="flex-1 overflow-auto bg-white dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-700">
-        {children}
-      </main>
-    </div>
-  );
+        </div>
+        <div>
+          <SidebarLink
+            link={{
+              label: "Benjamin Kiel",
+              href: "https://benjamin-kiel.de",
+              icon: (
+                <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-7 w-7 flex-shrink-0 rounded-full" />
+              ),
+            }}
+          />
+        </div>
+      </SidebarBody>
+    </Sidebar>
+    
+    {/* WICHTIGSTE ÄNDERUNG HIER:
+       1. h-full: Füllt die Höhe aus.
+       2. w-full: Füllt die Breite aus.
+       3. relative: Damit Kinder sich daran orientieren können.
+       4. Wir entfernen 'overflow-hidden' hier, damit das Kind scrollen darf, 
+          oder setzen es, wenn das Kind 'overflow-auto' hat. 
+          Hier: Wir lassen es 'flex', damit das Kind (Parallax) den Platz füllt.
+    */}
+    <main className="flex-1 flex flex-col h-full w-full bg-white dark:bg-neutral-950 border-l border-neutral-200 dark:border-neutral-700 relative">
+      {children}
+    </main>
+  </div>
+);
 }
 
 export const Logo = () => {
