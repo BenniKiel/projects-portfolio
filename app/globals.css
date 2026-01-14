@@ -24,3 +24,37 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* --- Custom Dark Scrollbar --- */
+
+/* Für Webkit Browser (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;               /* Breite des Scrollbalkens */
+  background-color: #0a0a0a; /* Hintergrund (neutral-950) */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Track soll unsichtbar sein */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333;    /* Dunkelgrauer "Daumen" */
+  border-radius: 5px;        /* Runde Ecken */
+  border: 2px solid #0a0a0a; /* Ein kleiner Rand lässt ihn "schweben" */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;    /* Etwas heller beim Drüberfahren */
+}
+
+/* Für Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #0a0a0a; /* Thumb Color / Track Color */
+}
