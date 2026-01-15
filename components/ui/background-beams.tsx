@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion"; // WICHTIG: Hier framer-motion statt motion/react
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
-    // Die Pfade definieren die Linien im Hintergrund
     const paths = [
       "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
       "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
@@ -75,7 +74,7 @@ export const BackgroundBeams = React.memo(
         )}
       >
         <svg
-          className="pointer-events-none absolute z-0 h-full w-full opacity-40" // Opacity angepasst für dezenten Look
+          className="pointer-events-none absolute z-0 h-full w-full opacity-50"
           width="100%"
           height="100%"
           viewBox="0 0 696 316"

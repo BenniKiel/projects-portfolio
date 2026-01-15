@@ -87,8 +87,6 @@ export const DesktopSidebar = ({
   return (
     <motion.div
       className={cn(
-        // WICHTIG: overflow-hidden verhindert, dass Text layout-shifts verursacht.
-        // flex-col sorgt für korrekte Anordnung.
         "h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] shrink-0 overflow-hidden",
         className
       )}
@@ -97,7 +95,7 @@ export const DesktopSidebar = ({
       }}
       transition={{
         duration: 0.3, 
-        ease: "easeInOut" // Etwas weicherer Ease
+        ease: "easeInOut"
       }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
@@ -177,7 +175,6 @@ export const SidebarLink = ({
       )}
       {...props}
     >
-      {/* WICHTIG: shrink-0 verhindert, dass das Icon wackelt/kleiner wird */}
       <div className="flex-shrink-0">
         {link.icon}
       </div>
@@ -187,8 +184,8 @@ export const SidebarLink = ({
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        transition={{ duration: 0.1 }} // Schneller als die Sidebar, damit es nicht lagged
-        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-nowrap inline-block !p-0 !m-0"
+        transition={{ duration: 0.1 }}
+        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition-transform duration-150 whitespace-nowrap inline-block !p-0 !m-0"
       >
         {link.label}
       </motion.span>

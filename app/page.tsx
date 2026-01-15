@@ -10,8 +10,6 @@ import {
 } from "@tabler/icons-react";
 
 export default function Dashboard() {
-  // WICHTIG: Kein <div> Wrapper mehr! 
-  // Wir geben der Gallery direkt die Anweisung, den Hintergrund zu setzen.
   return (
     <ParallaxScrollGallery 
       items={items} 
@@ -20,11 +18,7 @@ export default function Dashboard() {
   );
 }
 
-// --------------------------------------------------------------------------
-// Deine Projekt-Daten (Angepasst für das neue Layout)
-// --------------------------------------------------------------------------
-// Wir nutzen placeholderColor für den coolen Caliper-ähnlichen Gradient-Look,
-// bis du echte Screenshots hast.
+
 const items: ParallaxItemType[] = [
   {
     title: "Doom Style Raycaster",
@@ -74,5 +68,4 @@ const items: ParallaxItemType[] = [
     icon: <IconBrush className="h-5 w-5 text-neutral-500" />,
     href: "/projects/marbeling",
   },
-  // ... Du kannst hier mehr Items hinzufügen, um den Scroll-Effekt zu verstärken
 ];
