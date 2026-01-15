@@ -45,7 +45,7 @@ export const ParallaxScrollGallery = ({
 
   return (
     <div className={cn("w-full h-full relative bg-neutral-950", className)}>
-      <BackgroundBeams />
+      <BackgroundBeams className="hidden md:flex"/>
       
       <div
         ref={containerRef}
