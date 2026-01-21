@@ -19,7 +19,7 @@ const RotatingCube = () => {
 
   const handleClick = (event: React.MouseEvent) => {
     setClicked(true);
-    setTimeout(() => setClicked(false), 300);
+    setTimeout(() => setClicked(false), 100);
   }
 
   useFrame((state, delta) => {
