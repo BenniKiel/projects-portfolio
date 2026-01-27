@@ -1,7 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Material, ShaderMaterial } from "three";
+import Particles from "@/components/particles";
+import ParticlePage from "@/components/particles";
+import SlimePage from "@/components/slime-simulation";
 
 const vertexShader = `
   varying vec2 vUv; 
@@ -28,9 +31,13 @@ const ShaderPlane = () => {
 
   const materialRef = useRef<ShaderMaterial>(null);
 
+  const uniforms = useMemo(() => ({
+    uTime: { value: 0.0 }
+  }), []);
+
   useFrame((state, delta) => {
     if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value += delta;
+      materialRef.current.uniforms.uTime.value += delta * 0.5;
     }
     
   });
@@ -45,6 +52,7 @@ const ShaderPlane = () => {
         ref={materialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
+        uniforms={uniforms}
       />
     </mesh>
   );
